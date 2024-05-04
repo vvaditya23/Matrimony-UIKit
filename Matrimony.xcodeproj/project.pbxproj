@@ -9,21 +9,29 @@
 /* Begin PBXBuildFile section */
 		480B957C2BD3CA9E0015706B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480B957B2BD3CA9E0015706B /* AppDelegate.swift */; };
 		480B957E2BD3CA9E0015706B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480B957D2BD3CA9E0015706B /* SceneDelegate.swift */; };
-		480B95802BD3CA9E0015706B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480B957F2BD3CA9E0015706B /* ViewController.swift */; };
+		480B95802BD3CA9E0015706B /* ProfileCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480B957F2BD3CA9E0015706B /* ProfileCardViewController.swift */; };
 		480B95832BD3CA9E0015706B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 480B95822BD3CA9E0015706B /* Base */; };
 		480B95852BD3CAA00015706B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 480B95842BD3CAA00015706B /* Assets.xcassets */; };
 		480B95882BD3CAA00015706B /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 480B95872BD3CAA00015706B /* Base */; };
+		480B95902BE67A1D0015706B /* ProfileCardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480B958F2BE67A1D0015706B /* ProfileCardCollectionViewCell.swift */; };
+		480B95922BE67AEC0015706B /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480B95912BE67AEC0015706B /* Profile.swift */; };
+		480B95942BE68B7E0015706B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480B95932BE68B7D0015706B /* NetworkManager.swift */; };
+		480B95962BE6AB9B0015706B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480B95952BE6AB9B0015706B /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		480B95782BD3CA9E0015706B /* Matrimony.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Matrimony.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		480B957B2BD3CA9E0015706B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		480B957D2BD3CA9E0015706B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		480B957F2BD3CA9E0015706B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		480B957F2BD3CA9E0015706B /* ProfileCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardViewController.swift; sourceTree = "<group>"; };
 		480B95822BD3CA9E0015706B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		480B95842BD3CAA00015706B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		480B95872BD3CAA00015706B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		480B95892BD3CAA00015706B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		480B958F2BE67A1D0015706B /* ProfileCardCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCardCollectionViewCell.swift; sourceTree = "<group>"; };
+		480B95912BE67AEC0015706B /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
+		480B95932BE68B7D0015706B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		480B95952BE6AB9B0015706B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +66,11 @@
 			children = (
 				480B957B2BD3CA9E0015706B /* AppDelegate.swift */,
 				480B957D2BD3CA9E0015706B /* SceneDelegate.swift */,
-				480B957F2BD3CA9E0015706B /* ViewController.swift */,
+				480B95912BE67AEC0015706B /* Profile.swift */,
+				480B95932BE68B7D0015706B /* NetworkManager.swift */,
+				480B957F2BD3CA9E0015706B /* ProfileCardViewController.swift */,
+				480B958F2BE67A1D0015706B /* ProfileCardCollectionViewCell.swift */,
+				480B95952BE6AB9B0015706B /* Extensions.swift */,
 				480B95812BD3CA9E0015706B /* Main.storyboard */,
 				480B95842BD3CAA00015706B /* Assets.xcassets */,
 				480B95862BD3CAA00015706B /* LaunchScreen.storyboard */,
@@ -138,9 +150,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				480B95802BD3CA9E0015706B /* ViewController.swift in Sources */,
+				480B95942BE68B7E0015706B /* NetworkManager.swift in Sources */,
+				480B95902BE67A1D0015706B /* ProfileCardCollectionViewCell.swift in Sources */,
+				480B95922BE67AEC0015706B /* Profile.swift in Sources */,
+				480B95802BD3CA9E0015706B /* ProfileCardViewController.swift in Sources */,
 				480B957C2BD3CA9E0015706B /* AppDelegate.swift in Sources */,
 				480B957E2BD3CA9E0015706B /* SceneDelegate.swift in Sources */,
+				480B95962BE6AB9B0015706B /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
