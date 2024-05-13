@@ -17,6 +17,13 @@ class ProfileCardCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
+    //TEST
+    private let genderLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 18)
+        return label
+    }()
+    
     private let nameAgeLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.boldSystemFont(ofSize: 18)
@@ -55,11 +62,15 @@ class ProfileCardCollectionViewCell: UICollectionViewCell {
         profileImageView.addSubview(nameAgeLabel)
         profileImageView.addSubview(locationLabel)
         profileImageView.addSubview(emailNationalityLabel)
+        //TEST
+        profileImageView.addSubview(genderLabel)
         
         profileImageView.translatesAutoresizingMaskIntoConstraints = false
         nameAgeLabel.translatesAutoresizingMaskIntoConstraints = false
         locationLabel.translatesAutoresizingMaskIntoConstraints = false
         emailNationalityLabel.translatesAutoresizingMaskIntoConstraints = false
+        //TEST
+        genderLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             profileImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
@@ -77,7 +88,12 @@ class ProfileCardCollectionViewCell: UICollectionViewCell {
             
             nameAgeLabel.bottomAnchor.constraint(equalTo: locationLabel.topAnchor, constant: -3),
             nameAgeLabel.leadingAnchor.constraint(equalTo: emailNationalityLabel.leadingAnchor),
-            nameAgeLabel.trailingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: -20)
+            nameAgeLabel.trailingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: -20),
+            
+            //TEST
+            genderLabel.bottomAnchor.constraint(equalTo: nameAgeLabel.topAnchor, constant: -3),
+            genderLabel.leadingAnchor.constraint(equalTo: emailNationalityLabel.leadingAnchor),
+            genderLabel.trailingAnchor.constraint(equalTo: profileImageView.trailingAnchor, constant: -20)
         ])
         
         emailNationalityLabel.numberOfLines = 0
@@ -86,6 +102,10 @@ class ProfileCardCollectionViewCell: UICollectionViewCell {
     }
     
     func configure(with profile: RandomProfile) {
+        //TEST
+        genderLabel.text = "\(profile.gender)"
+        genderLabel.textColor = .white
+        
         nameAgeLabel.text = "\(profile.name.first + " " + profile.name.last), \(profile.dob.age)"
         nameAgeLabel.textColor = .white
         

@@ -10,8 +10,11 @@ import UIKit
 class ProfileCardViewController: UIViewController, UINavigationBarDelegate {
     private var currentPage = 1
     private var profiles = [RandomProfile]()
+    private var genderReceived = ""
     
     let navbar = UINavigationBar()
+    let navItem = UINavigationItem()
+    
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0
@@ -26,7 +29,7 @@ class ProfileCardViewController: UIViewController, UINavigationBarDelegate {
                 collectionView.register(ProfileCardCollectionViewCell.self, forCellWithReuseIdentifier: "ProfileCardCell")
                 return collectionView
             }()
-    
+
     override func viewWillAppear(_ animated: Bool) {
         fetchRandomProfiles()
     }
@@ -35,8 +38,7 @@ class ProfileCardViewController: UIViewController, UINavigationBarDelegate {
         super.viewDidLoad()
         navbar.delegate = self
 
-        let navItem = UINavigationItem()
-        navItem.title = "Let's find the one for you..."
+        navItem.title = "Matches"
         navItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal.decrease.circle"), style: .done, target: self, action: #selector(filterButtonTapped))
         navItem.rightBarButtonItem?.tintColor = .black
         navbar.items = [navItem]
@@ -55,6 +57,8 @@ class ProfileCardViewController: UIViewController, UINavigationBarDelegate {
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
         ])
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: Notification.Name("GenderRefresh"), object: nil)
     }
 }
 
@@ -78,21 +82,53 @@ extension ProfileCardViewController: UICollectionViewDataSource, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
             if indexPath.item == profiles.count - 1 {
                 currentPage += 1
-                fetchRandomProfiles()
+                if genderReceived == "male" {
+                    NetworkManager.shared.resetSeed()
+                    NetworkManager.shared.fetchRandomProfiles(page: currentPage, resultsPerPage: 10, gender: "male") { result in
+                        switch result {
+                        case .success(let fetchedProfiles):
+                            print("Fetched profiles: \(fetchedProfiles)")
+                            self.profiles.append(contentsOf: fetchedProfiles)
+                            DispatchQueue.main.async {
+                                self.collectionView.reloadData()
+                            }
+                        case .failure(let error):
+                            print("Error fetching profiles: \(error)")
+                        }
+                    }
+                } else if genderReceived == "female" {
+                    NetworkManager.shared.resetSeed()
+                    NetworkManager.shared.fetchRandomProfiles(page: currentPage, resultsPerPage: 10, gender: "female") { result in
+                        switch result {
+                        case .success(let fetchedProfiles):
+                            print("Fetched profiles: \(fetchedProfiles)")
+                            self.profiles.append(contentsOf: fetchedProfiles)
+                            DispatchQueue.main.async {
+                                self.collectionView.reloadData()
+                            }
+                        case .failure(let error):
+                            print("Error fetching profiles: \(error)")
+                        }
+                    }
+                } else {
+                    fetchRandomProfiles()
+                }
             }
         }
 }
 
 extension ProfileCardViewController {
     @objc func filterButtonTapped() {
-        present(FilterViewController(), animated: true)
+        let filterVC = FilterViewController()
+        filterVC.isModalInPresentation = true   //disables swipe down to close gesture
+        present(filterVC, animated: true)
     }
 }
 
 //API call
 extension ProfileCardViewController {
     func fetchRandomProfiles() {
-        NetworkManager.shared.fetchRandomProfiles(page: currentPage, resultsPerPage: 10) { result in
+        NetworkManager.shared.fetchRandomProfiles(page: currentPage, resultsPerPage: 10, gender: "") { result in
             switch result {
             case .success(let fetchedProfiles):
                 print("Fetched profiles: \(fetchedProfiles)")
@@ -102,6 +138,30 @@ extension ProfileCardViewController {
                 }            
             case .failure(let error):
                 print("Error fetching profiles: \(error)")
+            }
+        }
+    }
+    
+    @objc func handleNotification(_ notification: Notification) {
+        profiles = []
+        collectionView.reloadData()
+        NetworkManager.shared.resetSeed()
+        currentPage = 1
+        if let userInfo = notification.userInfo {
+            if let gender = userInfo["gender"] as? String {
+                    genderReceived = gender
+                NetworkManager.shared.fetchRandomProfiles(page: currentPage, resultsPerPage: 10, gender: gender) { result in
+                    switch result {
+                    case .success(let fetchedProfiles):
+                        print("Fetched profiles: \(fetchedProfiles)")
+                        self.profiles.append(contentsOf: fetchedProfiles)
+                        DispatchQueue.main.async {
+                            self.collectionView.reloadData()
+                        }
+                    case .failure(let error):
+                        print("Error fetching profiles: \(error)")
+                    }
+                }
             }
         }
     }
