@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ProfileCardViewController.swift
 //  Matrimony
 //
 //  Created by Aditya Vyavahare on 04/05/24.
@@ -7,10 +7,11 @@
 
 import UIKit
 
-class ProfileCardViewController: UIViewController {
+class ProfileCardViewController: UIViewController, UINavigationBarDelegate {
     private var currentPage = 1
     private var profiles = [RandomProfile]()
     
+    let navbar = UINavigationBar()
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0
@@ -32,10 +33,24 @@ class ProfileCardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navbar.delegate = self
+
+        let navItem = UINavigationItem()
+        navItem.title = "Let's find the one for you..."
+        navItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "line.3.horizontal.decrease.circle"), style: .done, target: self, action: #selector(filterButtonTapped))
+        navItem.rightBarButtonItem?.tintColor = .black
+        navbar.items = [navItem]
+
+        view.addSubview(navbar)
         view.addSubview(collectionView)
+        
         collectionView.translatesAutoresizingMaskIntoConstraints = false
+        navbar.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            navbar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            navbar.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            navbar.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            collectionView.topAnchor.constraint(equalTo: navbar.bottomAnchor, constant: 10),
             collectionView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 10),
             collectionView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -10),
             collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -10)
@@ -66,6 +81,12 @@ extension ProfileCardViewController: UICollectionViewDataSource, UICollectionVie
                 fetchRandomProfiles()
             }
         }
+}
+
+extension ProfileCardViewController {
+    @objc func filterButtonTapped() {
+        present(FilterViewController(), animated: true)
+    }
 }
 
 //API call

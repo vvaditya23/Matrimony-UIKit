@@ -17,6 +17,7 @@
 		480B95922BE67AEC0015706B /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480B95912BE67AEC0015706B /* Profile.swift */; };
 		480B95942BE68B7E0015706B /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480B95932BE68B7D0015706B /* NetworkManager.swift */; };
 		480B95962BE6AB9B0015706B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480B95952BE6AB9B0015706B /* Extensions.swift */; };
+		480B95B82BF1D1610015706B /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 480B95B72BF1D1610015706B /* FilterViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		480B95912BE67AEC0015706B /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		480B95932BE68B7D0015706B /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		480B95952BE6AB9B0015706B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		480B95B72BF1D1610015706B /* FilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				480B95912BE67AEC0015706B /* Profile.swift */,
 				480B95932BE68B7D0015706B /* NetworkManager.swift */,
 				480B957F2BD3CA9E0015706B /* ProfileCardViewController.swift */,
+				480B95B72BF1D1610015706B /* FilterViewController.swift */,
 				480B958F2BE67A1D0015706B /* ProfileCardCollectionViewCell.swift */,
 				480B95952BE6AB9B0015706B /* Extensions.swift */,
 				480B95812BD3CA9E0015706B /* Main.storyboard */,
@@ -152,6 +155,7 @@
 			files = (
 				480B95942BE68B7E0015706B /* NetworkManager.swift in Sources */,
 				480B95902BE67A1D0015706B /* ProfileCardCollectionViewCell.swift in Sources */,
+				480B95B82BF1D1610015706B /* FilterViewController.swift in Sources */,
 				480B95922BE67AEC0015706B /* Profile.swift in Sources */,
 				480B95802BD3CA9E0015706B /* ProfileCardViewController.swift in Sources */,
 				480B957C2BD3CA9E0015706B /* AppDelegate.swift in Sources */,
